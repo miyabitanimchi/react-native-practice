@@ -1,14 +1,43 @@
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
+import { useState } from 'react';
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  Button,
+  ScrollView
+} from 'react-native';
 
 export default function App() {
+  const [enteredGoalText, setEnteredGoalText] = useState("");
+  const [courseGoals, setCourseGoals] = useState([]);
+
+  const goalInputHandler = (enteredText) => {
+    setEnteredGoalText(enteredText);
+  }
+
+  const addGoalHandler = () => {
+    setCourseGoals((prevState) => [...prevState, enteredGoalText]);
+  }
+
   return (
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.textInput} placeholder="Your course goal!" />
-        <Button title="Add Goal" />
+        <TextInput
+        style={styles.textInput}
+        placeholder="Your course goal!"
+        onChangeText={goalInputHandler}
+      />
+        <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
-      <View>
-        <Text>List of goals...</Text>
+      <View style={styles.goalsContainer}>
+        <ScrollView alwaysBounceVertical={false}>
+          {courseGoals.map((goal) => (
+            <View style={styles.goalItem} key={goal}>
+              <Text style={styles.goalText}>{goal}</Text>
+            </View>
+          ))}
+        </ScrollView>
       </View>
     </View>
   );
@@ -16,17 +45,37 @@ export default function App() {
 
 const styles = StyleSheet.create({
   appContainer: {
-    padding: 50
+    padding: 50,
+    paddingHorizontal: 16,
+    flex: 1
   },
   inputContainer: {
+    flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 24,
+    borderBottomWidth: 1,
+    borderBottomColor: "#cccccc"
   },
   textInput: {
     borderWidth: 1,
     borderColor: "#cccccc",
-    width: "80%",
+    width: "70%",
     marginRight: 8,
     padding: 8
+  },
+  goalsContainer: {
+    flex: 5
+  },
+  goalItem: {
+    margin: 8,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: "salmon",
+
+  },
+  goalText: {
+    color: "white"
   }
 });
