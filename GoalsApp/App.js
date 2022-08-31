@@ -19,8 +19,9 @@ export default function App() {
     ]);
   }
 
-  const deleteGoalHandler = () => {
-    console.log("deleted");
+  const deleteGoalHandler = (id) => {
+    console.log(id);
+    setCourseGoals((prevState) => prevState.filter((goal) => goal.id !== id));
   }
 
   return (
@@ -31,7 +32,7 @@ export default function App() {
       <View style={styles.goalsContainer}>
         <FlatList
           data={courseGoals}
-          renderItem={(itemData) => <GoalItem text={itemData.item.text} onDeleteItem={deleteGoalHandler} />}
+          renderItem={(itemData) => <GoalItem text={itemData.item.text} onDeleteItem={deleteGoalHandler} id={itemData.item.id} />}
           alwaysBounceVertical={false}
           keyExtractor={(item, index) => {
             return item.id
