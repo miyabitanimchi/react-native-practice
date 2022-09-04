@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { StyleSheet, ImageBackground, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import Colors from "./constants/colors";
 
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
@@ -21,7 +22,7 @@ export default function App() {
 
     return (
         <LinearGradient
-            colors={["#D66D75", "#E29587"]}
+            colors={[Colors.secondary500, Colors.secondary300]}
             style={styles.rootScreen}
         >
             <ImageBackground
