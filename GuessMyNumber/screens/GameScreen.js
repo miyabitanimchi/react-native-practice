@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Alert } from "react-native";
+import { View, Text, StyleSheet, Alert, FlatList } from "react-native";
 import Title from "../components/ui/Title";
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui/PrimaryButton";
@@ -23,6 +23,7 @@ let maxBondary = 100;
 const GameScreen = ({ userNumber, onGameOver }) => {
     const initialGuess = generateRpndomBetween(1, 100, userNumber);
     const [currentGuess, setCurrentGuess] = useState(initialGuess);
+    const [guessRounds, setGuessRounds] = useState([initialGuess]);
 
     const nextGuessHandler = (direction) => {
         if (
@@ -45,6 +46,7 @@ const GameScreen = ({ userNumber, onGameOver }) => {
             currentGuess
         );
         setCurrentGuess(newRandomNum);
+        setGuessRounds((prevState => [newRandomNum, ...prevState]));
     };
 
     useEffect(() => {
@@ -82,7 +84,14 @@ const GameScreen = ({ userNumber, onGameOver }) => {
                     </View>
                 </View>
             </Card>
-            {/* <View>LOG ROUNDS</View> */}
+            {/* {guessRounds.map((guessRound) => (
+                <Text key={guessRound}>{guessRound}</Text>
+            ))} */}
+            <FlatList
+                data={guessRounds}
+                renderItem={(guessData) => <Text key={guessData}>{guessData.item.text}</Text>}
+                alwaysBounceVertical={false}
+            ></FlatList>
         </View>
     );
 };
