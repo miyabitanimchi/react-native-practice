@@ -89,8 +89,9 @@ const GameScreen = ({ userNumber, onGameOver }) => {
             ))} */}
             <FlatList
                 data={guessRounds}
-                renderItem={(guessData) => <Text key={guessData}>{guessData.item.text}</Text>}
+                renderItem={(guessData) => <Text key={itemData}>{itemData.item}</Text>}
                 alwaysBounceVertical={false}
+                keyExtractor={(item) => item}
             ></FlatList>
         </View>
     );
