@@ -6,6 +6,7 @@ import PrimaryButton from "../components/ui/PrimaryButton";
 import Card from "../components/ui/Card";
 import InstructionText from "../components/ui/InstructionText";
 import { Ionicons } from "@expo/vector-icons";
+import GuessLogsItem from "../components/game/GuessLogsItem";
 
 const generateRpndomBetween = (min, max, exclude) => {
     const randomNum = Math.floor(Math.random() * (max - min)) + min;
@@ -58,7 +59,10 @@ const GameScreen = ({ userNumber, onGameOver }) => {
     useEffect(() => {
         minBondary = 1;
         maxBondary = 100;
-    }, [])
+    }, []);
+
+    const guessRoundsListLength = guessRounds.length;
+
     return (
         <View style={styles.screen}>
             <Title>Opponent's Guess</Title>
@@ -89,7 +93,7 @@ const GameScreen = ({ userNumber, onGameOver }) => {
             ))} */}
             <FlatList
                 data={guessRounds}
-                renderItem={(guessData) => <Text key={itemData}>{itemData.item}</Text>}
+                renderItem={(itemData) => <GuessLogsItem roundNum={guessRoundsListLength - itemData.index} guess={itemData.item} />}
                 alwaysBounceVertical={false}
                 keyExtractor={(item) => item}
             ></FlatList>
