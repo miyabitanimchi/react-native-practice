@@ -34,8 +34,9 @@ export default function App() {
     }
 
     let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
-    const gameOverHandler = () => {
+    const gameOverHandler = (numOfRounds) => {
         setGameIsOver(true);
+        setGuessRounds(numOfRounds);
     };
 
     if (userNumber) {
