@@ -6,12 +6,12 @@ const Card = ({ children }) => {
 };
 export default Card;
 
-const dimentionWidth = Dimensions.get("window").width;
+const deviceWidth = Dimensions.get("window").width;
 
 const styles = StyleSheet.create({
     card: {
         padding: 16,
-        marginTop: dimentionWidth < 380 ? 18 : 36,
+        marginTop: deviceWidth < 380 ? 18 : 36,
         backgroundColor: "rgba(237, 247, 246, 0.4),",
         borderRadius: 8,
         elevation: 5, // android only
