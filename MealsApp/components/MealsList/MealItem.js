@@ -7,14 +7,22 @@ import {
     Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import MealDetails from "./MealDetails";
+import MealDetails from "../MealDetails";
 
-const MealItem = ({ mealId, title, imageUrl, duration, complexity, affordability, onPress }) => {
+const MealItem = ({
+    mealId,
+    title,
+    imageUrl,
+    duration,
+    complexity,
+    affordability,
+    onPress,
+}) => {
     const navigation = useNavigation();
 
     const selectMealHandler = () => {
         navigation.navigate("MealDetail", { mealId });
-    }
+    };
     return (
         <View style={styles.mealItem}>
             <Pressable

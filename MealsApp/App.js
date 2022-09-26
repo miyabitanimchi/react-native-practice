@@ -42,7 +42,7 @@ const DwawerNavigator = () => {
                 name="Favorites"
                 component={FavoritesScreen}
                 options={{
-                    title: "All Categories",
+                    title: "Favorites",
                     drawerIcon: ({ color, size }) => (
                         <AntDesign name="heart" size={size} color={color} />
                     ),
