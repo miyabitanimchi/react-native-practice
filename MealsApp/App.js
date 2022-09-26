@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Button } from "react-native";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
@@ -9,6 +8,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
+import FavoriteContextProvider from "./store/context/favorite-context";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -55,40 +55,42 @@ const DwawerNavigator = () => {
 export default function App() {
     return (
         <>
-            <NavigationContainer>
-                <Stack.Navigator
-                // screenOptions={{
-                //     headerStyle: {
-                //         backgroundColor: "#9eecff",
-                //     },
-                //     headerTintColor: "black",
-                //     contentStyle: { backgroundColor: "#f2f2f2" },
-                // }}
-                >
-                    <Stack.Screen
-                        name="Drawer"
-                        component={DwawerNavigator}
-                        options={{
-                            headerShown: false,
-                            // title: "All Categories",
-                        }}
-                    />
-                    <Stack.Screen
-                        name="MealsOverview"
-                        component={MealsOverviewScreen}
-                        // option={({route, navigation}) => {
-                        //     const catId = route.params.categoryId;
-                        //     return {
-                        //         title: catId
-                        //     };
-                        // }}
-                    />
-                    <Stack.Screen
-                        name="MealDetail"
-                        component={MealDetailScreen}
-                    />
-                </Stack.Navigator>
-            </NavigationContainer>
+            <FavoriteContextProvider>
+                <NavigationContainer>
+                    <Stack.Navigator
+                    // screenOptions={{
+                    //     headerStyle: {
+                    //         backgroundColor: "#9eecff",
+                    //     },
+                    //     headerTintColor: "black",
+                    //     contentStyle: { backgroundColor: "#f2f2f2" },
+                    // }}
+                    >
+                        <Stack.Screen
+                            name="Drawer"
+                            component={DwawerNavigator}
+                            options={{
+                                headerShown: false,
+                                // title: "All Categories",
+                            }}
+                        />
+                        <Stack.Screen
+                            name="MealsOverview"
+                            component={MealsOverviewScreen}
+                            // option={({route, navigation}) => {
+                            //     const catId = route.params.categoryId;
+                            //     return {
+                            //         title: catId
+                            //     };
+                            // }}
+                        />
+                        <Stack.Screen
+                            name="MealDetail"
+                            component={MealDetailScreen}
+                        />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </FavoriteContextProvider>
         </>
     );
 }
