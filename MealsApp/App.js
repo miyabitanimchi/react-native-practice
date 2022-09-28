@@ -8,7 +8,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-import FavoriteContextProvider from "./store/context/favorite-context";
+// import FavoriteContextProvider from "./store/context/favorite-context";
+import { Provider } from "react-redux";
+import { store } from "./store/redux/store";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -55,16 +57,10 @@ const DwawerNavigator = () => {
 export default function App() {
     return (
         <>
-            <FavoriteContextProvider>
+            {/* <FavoriteContextProvider> */}
+            <Provider store={store}>
                 <NavigationContainer>
                     <Stack.Navigator
-                    // screenOptions={{
-                    //     headerStyle: {
-                    //         backgroundColor: "#9eecff",
-                    //     },
-                    //     headerTintColor: "black",
-                    //     contentStyle: { backgroundColor: "#f2f2f2" },
-                    // }}
                     >
                         <Stack.Screen
                             name="Drawer"
@@ -90,7 +86,8 @@ export default function App() {
                         />
                     </Stack.Navigator>
                 </NavigationContainer>
-            </FavoriteContextProvider>
+            </Provider>
+            {/* </FavoriteContextProvider> */}
         </>
     );
 }
