@@ -1,8 +1,14 @@
 import * as React from 'react';
 import { View, Text } from 'react-native';
+import { ItemData } from '../../global';
 
-const ExpensesSummary = ({ expenses, periodName }) => {
-  const expensesSum = expenses.reduce((sum: number, expense: number) => {
+interface Props {
+  expenses: ItemData[];
+  periodName: string;
+}
+
+const ExpensesSummary: React.FC<Props> = ({ expenses, periodName }) => {
+  const expensesSum = expenses.reduce((sum, expense) => {
     return sum + expense.amount;
   }, 0);
   return (

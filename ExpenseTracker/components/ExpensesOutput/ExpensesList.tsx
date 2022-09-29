@@ -1,11 +1,16 @@
 import * as React from 'react';
-import { Text, FlatList } from 'react-native';
+import { Text, FlatList, ListRenderItem } from 'react-native';
+import { ItemData } from '../../global';
 
-const renderExpenseItem = (itemData) => {
-  return <Text>{itemData.item.description}</Text>;
+interface Props {
+  expenses: ItemData[];
+}
+
+const renderExpenseItem: ListRenderItem<ItemData> = ({ item }) => {
+  return <Text>{item.description}</Text>;
 };
 
-const ExpensesList = ({ expenses }) => {
+const ExpensesList: React.FC<Props> = ({ expenses }) => {
   return (
     <FlatList
       data={expenses}
