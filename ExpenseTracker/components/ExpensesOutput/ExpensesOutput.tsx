@@ -25,7 +25,8 @@ export default ExpensesOutput;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 24,
+    paddingHorizontal: 24,
+    paddingTop: 24,
     backgroundColor: Palette.blue400,
   },
 });

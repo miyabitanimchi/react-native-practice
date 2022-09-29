@@ -18,10 +18,10 @@ const ExpensesOverview = () => {
   return (
     <BottomTabs.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: Palette.orange300 },
+        headerStyle: { backgroundColor: Palette.green500 },
         headerTintColor: Palette.white,
         tabBarStyle: {
-          backgroundColor: Palette.orange300,
+          backgroundColor: Palette.green500,
         },
         tabBarActiveTintColor: Palette.orange500,
       }}
