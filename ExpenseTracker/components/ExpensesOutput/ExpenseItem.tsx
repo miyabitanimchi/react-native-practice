@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Pressable, View, Text, StyleSheet } from 'react-native';
 import { Palette } from '../../constants/styles';
 import { ItemData } from '../../global';
+import { getFormattedDate } from '../../utils/date';
 
 interface Props {
   item: ItemData;
@@ -15,10 +16,10 @@ const ExpenseItem: React.FC<Props> = ({ item }) => {
           <Text style={[styles.textBase, styles.description]}>
             {item.description}
           </Text>
-          <Text style={styles.textBase}>{item.date.toString()}</Text>
+          <Text style={styles.textBase}>{getFormattedDate(item.date)}</Text>
         </View>
         <View style={styles.amountContainer}>
-          <Text style={styles.amount}>{item.amount}</Text>
+          <Text style={styles.amount}>{item.amount.toFixed()}</Text>
         </View>
       </View>
     </Pressable>
@@ -56,6 +57,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 4,
+    minWidth: 80,
   },
   amount: {
     color: Palette.blue400,
