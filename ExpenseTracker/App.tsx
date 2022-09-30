@@ -10,6 +10,7 @@ import AllExpenses from './screens/AllExpenses';
 import { Palette } from './constants/styles';
 import { Octicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
+import IconButton from './components/UI/IconButton';
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -24,6 +25,14 @@ const ExpensesOverview = () => {
           backgroundColor: Palette.green500,
         },
         tabBarActiveTintColor: Palette.orange500,
+        headerRight: ({ tintColor }) => (
+          <IconButton
+            icon="add"
+            size={24}
+            color={tintColor}
+            onPress={() => {}}
+          />
+        ),
       }}
     >
       <BottomTabs.Screen

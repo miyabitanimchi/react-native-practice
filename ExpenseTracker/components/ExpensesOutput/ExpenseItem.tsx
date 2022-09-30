@@ -9,8 +9,12 @@ interface Props {
 }
 
 const ExpenseItem: React.FC<Props> = ({ item }) => {
+  const expensePressHandler = () => {};
   return (
-    <Pressable>
+    <Pressable
+      onPress={expensePressHandler}
+      style={({ pressed }) => pressed && styles.pressed}
+    >
       <View style={styles.expenseItem}>
         <View>
           <Text style={[styles.textBase, styles.description]}>
@@ -29,6 +33,9 @@ const ExpenseItem: React.FC<Props> = ({ item }) => {
 export default ExpenseItem;
 
 const styles = StyleSheet.create({
+  pressed: {
+    opacity: 0.5,
+  },
   expenseItem: {
     padding: 20,
     marginVertical: 8,
