@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import * as React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { StackScreenProps } from '@react-navigation/stack';
+import { StackParamList } from './global';
 import ManageExpense from './screens/ManageExpense';
 import RecentExpenses from './screens/RecentExpenses';
 import AllExpenses from './screens/AllExpenses';
@@ -11,14 +13,23 @@ import { Palette } from './constants/styles';
 import { Octicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import IconButton from './components/UI/IconButton';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-const Stack = createNativeStackNavigator();
+// import Profile
+
+const Stack = createNativeStackNavigator<StackParamList>();
 const BottomTabs = createBottomTabNavigator();
+// type ScreenProp = StackScreenProps<StackParamList, 'ManageExpense'>;
 
-const ExpensesOverview = () => {
+type ExpensesOverviewScreenProps = NativeStackScreenProps<
+  StackParamList,
+  'ExpensesOverview'
+>;
+
+const ExpensesOverview: React.FC<ExpensesOverviewScreenProps> = () => {
   return (
     <BottomTabs.Navigator
-      screenOptions={{
+      screenOptions={({ navigation }) => ({
         headerStyle: { backgroundColor: Palette.green500 },
         headerTintColor: Palette.white,
         tabBarStyle: {
@@ -30,10 +41,12 @@ const ExpensesOverview = () => {
             icon="add"
             size={24}
             color={tintColor}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate('ManageExpense');
+            }}
           />
         ),
-      }}
+      })}
     >
       <BottomTabs.Screen
         name="RecentExpenses"

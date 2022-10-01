@@ -3,13 +3,34 @@ import { Pressable, View, Text, StyleSheet } from 'react-native';
 import { Palette } from '../../constants/styles';
 import { ItemData } from '../../global';
 import { getFormattedDate } from '../../utils/date';
+import { useNavigation } from '@react-navigation/native';
+// import { ManageExpenseProps } from '../../global';
+// import { StackScreenProps } from '@react-navigation/stack';
+// import { StackParamList } from '../../global';
+// import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackParamList } from '../../global';
+import type { StackNavigationProp } from '@react-navigation/stack';
+
+type ManageExpenseScreenProps = NativeStackScreenProps<
+  StackParamList,
+  'ManageExpense'
+>;
 
 interface Props {
   item: ItemData;
 }
 
+// type ManageExpenseScreenProps = NativeStackScreenProps<
+//   StackParamList,
+//   'ManageExpense'
+// >;
+
 const ExpenseItem: React.FC<Props> = ({ item }) => {
-  const expensePressHandler = () => {};
+  const navigation = useNavigation<ManageExpenseScreenProps>();
+  const expensePressHandler = () => {
+    navigation.navigate('ManageExpense');
+  };
   return (
     <Pressable
       onPress={expensePressHandler}
