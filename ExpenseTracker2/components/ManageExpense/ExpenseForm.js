@@ -20,7 +20,14 @@ const ExpenseForm = () => {
           onChangeText: amountChangeHandler,
         }}
       />
-      <Input label="Description" textInputConfig={{}} />
+      <Input
+        label="Description"
+        textInputConfig={{
+          multiline: true,
+          //   autoCapitalize: 'none',
+          //   autoCorrect: false,
+        }}
+      />
     </View>
   );
 };
