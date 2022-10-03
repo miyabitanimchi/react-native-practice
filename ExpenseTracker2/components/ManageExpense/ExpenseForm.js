@@ -4,20 +4,27 @@ import { useState } from 'react';
 import Button from '../UI/Button';
 
 const ExpenseForm = ({ onCancel, onSubmit, submitButtonLabel }) => {
-  const [amountValue, setAmountValue] = useState('');
   const [inputValues, setInputValues] = useState({
     amount: '',
     date: '',
     description: '',
   });
   const inputChangeHandler = (inputIdentifier, enteredAmount) => {
-    setAmountValue((prevState) => ({
+    setInputValues((prevState) => ({
       ...prevState,
       [inputIdentifier]: enteredAmount,
     }));
   };
 
-  const submitHandler = () => {};
+  const submitHandler = () => {
+    const expenseData = {
+      amount: +inputValues.amount, // + converts string to number!
+      date: new Date(inputValues.date),
+      description: inputValues.description,
+    };
+
+    onSubmit(expenseData);
+  };
   return (
     <View style={styles.form}>
       <Text style={styles.title}>Your Expense</Text>
