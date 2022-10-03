@@ -44,7 +44,7 @@ function ManageExpense({ route, navigation }) {
         onCancel={cancelHandler}
         onSubmit={confirmHandler}
         submitButtonLabel={isEditing ? 'Update' : 'Add'}
-        defaultValue={selectedExpense}
+        defaultValues={selectedExpense}
       />
 
       {isEditing && (
