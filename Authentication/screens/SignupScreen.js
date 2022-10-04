@@ -1,16 +1,19 @@
 import * as React from 'react';
 import AuthContent from '../components/Auth/AuthContent';
 import { createUser } from '../util/auth';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import LoadingOverlay from '../components/ui/LoadingOverlay';
 import { Alert } from 'react-native';
 
 function SignupScreen() {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
+
+  const authCtx = useContext(AuthContext);
   const signupHandler = async ({ email, password }) => {
     setIsAuthenticating(true);
     try {
-      await createUser(email, password);
+      const token = await createUser(email, password);
+      authCtx.authenticate(token);
     } catch (error) {
       Alert.alert(
         'Authentication failed',
