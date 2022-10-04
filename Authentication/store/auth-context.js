@@ -24,7 +24,7 @@ const AuthContextProvider = ({ children }) => {
     authenticate: authenticate,
     logout: logout,
   };
-  return <AuthContext.Provider>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export default AuthContextProvider;
