@@ -14,6 +14,12 @@ module.exports = function (api) {
           verbose: false,
         },
       ],
+      [
+        '@babel/plugin-transform-react-jsx',
+        {
+          runtime: 'automatic',
+        },
+      ],
     ],
   };
 };
