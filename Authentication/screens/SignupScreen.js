@@ -1,5 +1,6 @@
+import * as React from 'react';
 import AuthContent from '../components/Auth/AuthContent';
-import createUser from '../util/auth';
+import { createUser } from '../util/auth';
 import { useState } from 'react';
 import LoadingOverlay from '../components/ui/LoadingOverlay';
 
