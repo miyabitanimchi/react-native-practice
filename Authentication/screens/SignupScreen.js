@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { AuthContext } from '../store/auth-context';
 import AuthContent from '../components/Auth/AuthContent';
 import { createUser } from '../util/auth';
 import { useState, useContext } from 'react';
